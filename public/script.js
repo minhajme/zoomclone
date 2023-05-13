@@ -5,6 +5,9 @@ const peer = new Peer(undefined, {
     host: '/',
     port: '3001'
 });
+
+const peers = {};
+
 peer.on('open', id => {
     socket.emit('join-room', ROOM_ID, id);
 });
@@ -27,6 +30,10 @@ navigator.mediaDevices.getUserMedia({
    });
 });
 
+socket.on('user-disconnected', userId => {
+  if (peers[userId]) peers[userId].close();
+});
+
 const addVideoStream = (video, stream) => {
     video.srcObject = stream;
     video.addEventListener('loadedMetaData', () => {
@@ -42,4 +49,5 @@ const attachStreamToUser = (stream, userId) => {
     }).on('close', () => {
         userVid.remove();
     });
+    peers[userId] = call;
 };
