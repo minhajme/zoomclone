@@ -1,3 +1,3 @@
-##zoomclone?
+## zoom clone?
 
-Zoom clone app, lightweight, demonstrating the applicability of webRTC protocol.
+Zoom clone app, simplified, demonstrating the applicability of webRTC protocol.
